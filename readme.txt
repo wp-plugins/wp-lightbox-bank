@@ -1,5 +1,5 @@
 ﻿=== WP Lightbox Bank ===
-Contributors: contact-bank,Gallery-Bank
+Contributors: contact-banker,Gallery-Bank
 Tags: lightbox, Lightbox slider, popup, lightview, overlay, popup, popup image, popup images, colorbox, lightbox popup, lightbox pop, on click popup, onclick popup, popup box, style, style lightbox, fancybox, wordpress image lightbox, wordpress lightbox, wordpress popup, popup photo, photo, shadowbox, img, image, thickbox, open image, video lightbox, page, post,admin
 Requires at least: 3.0.1
 Tested up to: 4.0
@@ -30,15 +30,27 @@ Videos from two sources, i.e Vimeo and YouTube can be played in the lightbox ban
 
 == Installation ==
 
-### First download the ZIP file ,
+### Minimum requirements.  
+*   Wordpress 3.3+  
+*   PHP 5.x  
+*   MySQL 5.x  
 
-1. Log in to your website administrator panel.   
-2. Go to Plugins page, and add new plugin.    
-3. Upload [WordPress Lightbox](http://wordpress.org/plugins/lightbox). 
-4. Click `Install Now` button.     
-5. Then click `Activate Plugin` button. 
+### Performing a new installation  
 
-Now you can set your lightbox options, images and use our lightbox.
+After downloading the ZIP file,  
+
+1. Log in to the administrator panel.  
+2. Go to Plugins Add > New > Upload.  
+3. Click “Choose file” (“Browse”) and select the downloaded zip file.  
+
+*For Mac Users*  
+*Go to your Downloads folder and locate the folder with the plugin. Right-click on the folder and select Compress. Now you have a newly created .zip file which can be installed as described here.*  
+
+1. Click “Install Now” button.  
+2. Click “Activate Plugin” button for activating the plugin.  
+
+If any problem occurs, please contact us at [support@tech-banker.com](mailto:support@tech-banker.com).
+
 
 == Screenshots ==
     
