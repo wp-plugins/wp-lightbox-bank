@@ -7,9 +7,11 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WP Lightbox Bank is the perfect responsive image lightbox for WordPress Galleries & Albums.
+Lightbox Bank is the perfect responsive, mobile optimized lightbox plugin for displaying images & videos on WordPress.
 
 == Description ==
+
+### Mobile Friendly, Responsive, Retina Ready, Touch Navigation Enabled Lightbox Plugin for WordPress
 
 Lightbox is a perfect responsive image lightbox for viewing photos and videos. 
 
