@@ -13,11 +13,14 @@ Lightbox Bank is the perfect responsive, mobile optimized lightbox plugin for di
 
 ### Mobile Friendly, Responsive, Retina Ready, Touch Navigation Enabled Lightbox Plugin for WordPress
 
-Lightbox is a perfect responsive image lightbox for viewing photos and videos. 
+> Lightbox Bank is an ultra modern lightbox plugin for viewing photos and videos.  Lightbox Bank features touch navigation and is designed keeping in mind the adaptability of Mobiles/Tablets.
+Lightbox Bank is fully Responsive and Retina Ready. It allows you to enable it on all WordPress images and attachments as well.
+
 
 It is created especially for hassle free usage, permits you to view larger version of images and videos and giving an interesting design. 
 
 Videos from two sources, i.e Vimeo and YouTube can be played in the lightbox bank.
+
 
 **Features**
 
