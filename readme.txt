@@ -55,6 +55,10 @@ If any problem occurs, please contact us at [support@tech-banker.com](mailto:sup
 
 
 == Screenshots ==
+
+1. Lightbox Bank General Settings Page
+2. Lightbox Bank Display Settings Page
+3. Lightbox Bank System Status Page
     
 
 == Changelog ==
