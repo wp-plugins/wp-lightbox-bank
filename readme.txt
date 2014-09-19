@@ -1,6 +1,6 @@
 ﻿=== Lightbox Bank ===
 Contributors: contact-banker,Gallery-Bank
-Tags: lightbox, Lightbox slider, popup, lightview, overlay, popup, popup image, popup images, colorbox, lightbox popup, lightbox pop, on click popup, onclick popup, popup box, style, style lightbox, fancybox, wordpress image lightbox, wordpress lightbox, wordpress popup, popup photo, photo, shadowbox, img, image, thickbox, open image, video lightbox, page, post,admin,responsive
+Tags: AJAX, colorbox, gallery, image, images, lightbox, lightview, overlay, photo, photos, picture, video
 Requires at least: 3.0.1
 Tested up to: 4.0
 Stable tag: 1.0
@@ -13,8 +13,10 @@ Lightbox Bank is the perfect responsive, mobile optimized lightbox plugin for di
 
 ### Mobile Friendly, Responsive, Retina Ready, Touch Navigation Enabled Lightbox Plugin for WordPress
 
-> Lightbox Bank is an ultra modern lightbox plugin for viewing photos and videos.  Lightbox Bank features touch navigation and is designed keeping in mind the adaptability of Mobiles/Tablets.
-Lightbox Bank is fully Responsive and Retina Ready. It allows you to enable it on all WordPress images and attachments as well.
+> *Lightbox Bank is an ultra modern lightbox plugin for viewing photos and videos.  
+Lightbox Bank features touch navigation and is designed keeping in mind the adaptability of Mobiles/Tablets.
+Lightbox Bank is fully Responsive and Retina Ready. 
+It allows you to enable it on all WordPress images and attachments as well.
 
 
 It is created especially for hassle free usage, permits you to view larger version of images and videos and giving an interesting design. 
