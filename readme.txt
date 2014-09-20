@@ -22,7 +22,7 @@ Lightbox Bank is the perfect responsive, mobile optimized lightbox plugin for di
 Videos from two sources, i.e Vimeo and YouTube can be played in the lightbox bank.
 
 
-**Features**
+#### Lightbox Bank Features
 
 *	Hassle Free
 *	Responsive Design
@@ -35,12 +35,12 @@ Videos from two sources, i.e Vimeo and YouTube can be played in the lightbox ban
 
 == Installation ==
 
-### Minimum requirements.  
+### Minimum requirements for Lightbox Bank.  
 *   Wordpress 3.3+  
 *   PHP 5.x  
 *   MySQL 5.x  
 
-### Performing a new installation  
+### Performing a new installation for Lightbox Bank
 
 After downloading the ZIP file,  
 
@@ -63,6 +63,17 @@ If any problem occurs, please contact us at [support@tech-banker.com](mailto:sup
 2. Lightbox Bank Display Settings Page
 3. Lightbox Bank System Status Page
     
+== FAQ ==
+
+### Step 1. Adding a Lightbox ==
+
+To add a lightbox in your website you just need to install lightbox plugin and its done.
+
+### Step 2. Implementing Lightbox ==
+
+You don't need to insert any shortcode in your page or post. 
+After you install the Lightbox Bank it will work automatically when you click on any of your images on your website.
+
 
 == Changelog ==
 
