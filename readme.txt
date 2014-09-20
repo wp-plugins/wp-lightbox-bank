@@ -65,11 +65,11 @@ If any problem occurs, please contact us at [support@tech-banker.com](mailto:sup
     
 == FAQ ==
 
-### Step 1. Adding a Lightbox ==
+### Step 1. Adding a Lightbox
 
 To add a lightbox in your website you just need to install lightbox plugin and its done.
 
-### Step 2. Implementing Lightbox ==
+### Step 2. Implementing Lightbox
 
 You don't need to insert any shortcode in your page or post. 
 After you install the Lightbox Bank it will work automatically when you click on any of your images on your website.
