@@ -1,5 +1,16 @@
 <?php
+class save_data_settings
+{
+	function insert_data($tbl, $data)
+	{
+		global $wpdb;
+		$wpdb->insert($tbl,$data);
+	}
+}
+
 $lightbox_settings = array();
+$insert = new save_data_settings();
+$settings_value = array();
 
 $lightbox_settings["wp_galleries"] = "1";
 $lightbox_settings["wp_caption_image"] = "1";
@@ -27,14 +38,8 @@ $lightbox_settings["disable_other_lightbox"] = "true";
 
 foreach ($lightbox_settings as $val => $innerKey)
 {
-	$wpdb->query
-	(
-		$wpdb->prepare
-		(
-			"INSERT INTO " . wp_lightbox_bank_settings() . " (setting_key, setting_value) VALUES(%s, %s)",
-			$val,
-			$innerKey
-		)
-	);
+	$settings_value["setting_value"] = $innerKey;
+	$settings_value["setting_key"] = $val;
+	$insert->insert_data(wp_lightbox_bank_settings(),$settings_value);
 }
 ?>

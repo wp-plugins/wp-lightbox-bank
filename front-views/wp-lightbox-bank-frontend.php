@@ -18,13 +18,11 @@ if($wp_galleries == "1" || $wp_caption_image == "1" || $attachment_image == "1")
 <script type="text/javascript">
 	var string=".wp-lightbox-bank,",ie,ieVersion,lightease;
 	jQuery(document).ready(function($){
-		var lightbox_select = $('a[href$=".bmp"],a[href$=".gif"],a[href$=".jpg"],a[href$=".jpeg"],a[href$=".png"],a[href$=".BMP"],a[href$=".GIF"],a[href$=".JPG"],a[href$=".JPEG"],a[href$=".PNG"]');
-		lightbox_select.addClass("wp-lightbox-bank");
 		<?php
 			if($wp_galleries == "1") 
 			{
 				?>
-				string += ".gallery-item, ";
+				string = ".gallery-item, ";
 				<?php
 			}
 			if($wp_caption_image == "1")

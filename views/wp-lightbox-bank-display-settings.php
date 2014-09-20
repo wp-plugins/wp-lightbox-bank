@@ -92,11 +92,16 @@ jQuery("#frm_wplb_display_settings").validate
 	{
 		jQuery("body,html").animate({
 			scrollTop: jQuery("body,html").position().top}, "slow");
+		jQuery("body").css("opacity",".5");
 		jQuery("#update_settings_message").css("display","block");
+		var overlay = jQuery("<div class=\"lightbox_bank_processing\"></div>");
+		jQuery("body").append(overlay);
 		jQuery.post(ajaxurl, jQuery(form).serialize()+"&param=update_display_settings&action=lightbox_settings_library", function()
 		{
 			setTimeout(function () {
 				jQuery("#update_settings_message").css("display","none");
+				jQuery(".lightbox_bank_processing").remove();
+				jQuery("body").css("opacity","1");
 				window.location.href = "admin.php?page=wplb_display_settings";
 			},2000);
 			

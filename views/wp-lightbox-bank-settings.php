@@ -20,7 +20,7 @@ else
 { 
 	include WP_LIGHTBOX_BANK_BK_PLUGIN_DIR . "lib/get-wp-lightbox-bank-setting.php";
 ?>
-<form id="frm_wp_lightbox_bank" class="layout-form wplb-page-width" method="post">
+<form id="frm_wp_lightbox" class="layout-form wplb-page-width" method="post">
 	<div class="fluid-layout">
 		<div class="layout-span12 responsive">
 			<div class="widget-layout">
@@ -143,7 +143,7 @@ else
 	</div>
 </form>
 <script type="text/javascript">
-jQuery("#frm_wp_lightbox_bank").validate
+jQuery("#frm_wp_lightbox").validate
 ({
 	rules:
 	{
@@ -162,11 +162,16 @@ jQuery("#frm_wp_lightbox_bank").validate
 		jQuery("body,html").animate({
 			scrollTop: jQuery("body,html").position().top}, "slow");
 		jQuery("#update_settings_message").css("display","block");
+		jQuery("body").css("opacity",".5");
+		var overlay = jQuery("<div class=\"lightbox_bank_processing\"></div>");
+		jQuery("body").append(overlay);
 		jQuery.post(ajaxurl, jQuery(form).serialize()+"&param=update_lightbox_settings&action=lightbox_settings_library", function(data)
 		{
 			setTimeout(function () 
 			{
 				jQuery("#update_settings_message").css("display","none");
+				jQuery(".lightbox_bank_processing").remove();
+				jQuery("body").css("opacity","1");
 				window.location.href = "admin.php?page=wp_lightbox_bank";
 			},2000);
 			
@@ -177,10 +182,15 @@ function restore_lightbox()
 {
 	var r = confirm("<?php _e("Are you sure you want to restore settings?", wp_lightbox_bank ); ?>");
 	if (r == true) {
+		jQuery("#restore_lightbox_message").css("display", "block");
+		jQuery("body").css("opacity",".5");
+		var overlay = jQuery("<div class=\"lightbox_bank_processing\"></div>");
+		jQuery("body").append(overlay);
 		jQuery.post(ajaxurl, "&param=restore_settings&action=lightbox_settings_library", function (data) {
-			jQuery("#restore_lightbox_message").css("display", "block");
 			setTimeout(function () {
 				jQuery("#restore_lightbox_message").css("display", "none");
+				jQuery(".lightbox_bank_processing").remove();
+				jQuery("body").css("opacity","1");
 				window.location.href = "admin.php?page=wp_lightbox_bank";
 			}, 2000);
 		});

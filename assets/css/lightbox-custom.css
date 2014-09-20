@@ -30,4 +30,21 @@
 {
 	margin-top:7px;
 }
+
+div.lightbox_bank_processing 
+{
+	background: url(../images/loading.gif) no-repeat scroll center center transparent;
+	display: inline-block;
+	height: 100%;
+	line-height: 1px;
+	text-align: center;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.wplb-chk-label
+{
+	vertical-align: bottom;
+}
 /***************************** End of Custom Css for Wp Lightbox Settings **************************************/

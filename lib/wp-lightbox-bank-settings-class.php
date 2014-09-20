@@ -18,50 +18,55 @@ if (!current_user_can($user_role_permission))
 }
 else
 { 
+	class update_data_setings
+	{
+		function update_data($tbl,$data,$where)
+		{
+			global $wpdb;
+			$wpdb->update($tbl,$data,$where);
+		}
+	}
 	if(isset($_REQUEST["param"]))
 	{
 		if($_REQUEST["param"] == "update_lightbox_settings")
 		{
+			$update = new update_data_setings();
 			$lightbox_setting_array = array();
+			$setting_value = array();
+			$setting_key = array();
 			$lightbox_setting_array["wp_galleries"] = isset($_REQUEST["ux_chk_galleries"]) ? "1" :"0" ;
 			$lightbox_setting_array["wp_caption_image"] = isset($_REQUEST["ux_chk_imagecaption"]) ? "1" : "0";
 			$lightbox_setting_array["attachment_image"]= isset($_REQUEST["ux_chk_attachmentimage"]) ? "1" : "0";
 			$lightbox_setting_array["overlay_click"]= isset($_REQUEST["ux_chk_overlayclick"]) ? "true" : "false";
 			$lightbox_setting_array["error_message"] = stripslashes(esc_attr($_REQUEST["ux_cb_errormsg"]));
+			$lightbox_setting_array["show_thumbnail"]= isset($_REQUEST["ux_chk_enable_thumbnail"]) ? "true" : "false";
+			$lightbox_setting_array["lightbox_autoplay"]= isset($_REQUEST["ux_chk_autoplay"]) ? "true" : "false";
 			$lightbox_setting_array["language_direction"] = esc_attr($_REQUEST["ux_rdl_enablelanguage"]);
 			$lightbox_setting_array["disable_other_lightbox"] = isset($_REQUEST["ux_chk_disablelightbox"]) ? "true" : "false";
-		
+			
 			foreach ($lightbox_setting_array as $val => $innerKey) 
 			{
-				$wpdb->query
-				(
-					$wpdb->prepare
-					(
-						"UPDATE " . wp_lightbox_bank_settings() . " SET setting_value = %s WHERE setting_key = %s",
-						$innerKey ,
-						$val 
-					)
-				);
+				$setting_value["setting_value"] = $innerKey;
+				$setting_key["setting_key"] = $val;
+				$update->update_data(wp_lightbox_bank_settings(),$setting_value,$setting_key);
 			}
 			die();
 		}
 		elseif($_REQUEST["param"] == "update_display_settings")
 		{
+			$update = new update_data_setings();
 			$display_setting_array = array();
+			$setting_value = array();
+			$setting_key = array();
 			$display_setting_array["image_title"]= isset($_REQUEST["ux_image_title"]) ? "true" : "false";
 			$display_setting_array["image_caption"] = isset($_REQUEST["ux_chk_image_caption"]) ? "true" : "false";
 			$display_setting_array["text_align"] = esc_attr($_REQUEST["ux_text_align"]);
+			
 			foreach ($display_setting_array as $val => $innerKey)
 			{
-				$wpdb->query
-				(
-					$wpdb->prepare
-					(
-						"UPDATE " . wp_lightbox_bank_settings() . " SET setting_value = %s WHERE setting_key = %s",
-						$innerKey ,
-						$val
-					)
-				);
+				$setting_value["setting_value"] = $innerKey;
+				$setting_key["setting_key"] = $val;
+				$update->update_data(wp_lightbox_bank_settings(),$setting_value,$setting_key);
 			}
 			die();
 		}

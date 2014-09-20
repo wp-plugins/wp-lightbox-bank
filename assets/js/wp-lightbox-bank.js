@@ -15,7 +15,7 @@
             easing: 'ease', //'cubic-bezier(0.25, 0, 0.25, 1)',//
             speed: 1000,
             closable: false,
-            loop: false,
+            loop: true,
             auto: false,
             pause: 4000,
             preload:1,//number of preload slides. will exicute only after the current slide is fully loaded. ex:// you clicked on 4th image and if preload = 1 then 3rd slide and 5th slide will be loaded in the background after the 4th slide is fully loaded.. if preload is 2 then 2nd 3rd 5th 6th slides will be preloaded.. ... ...
@@ -88,6 +88,7 @@
                         setUp.init(index);
                     } else {
                         $children = $(this);
+                       
                         $( $this ).each(function( index ) 
                 		{
                 			if($( this ).is( "a" ))
@@ -99,7 +100,7 @@
                 				url_array.push($( this ).find("a").attr("href"));
                 			}
                 		});
-                        
+                      
                         $children.click(function (e) {
                             if (settings.rel == true && $this.data('rel')) {
                                 var rel = $this.data('rel');
@@ -144,7 +145,6 @@
                 this.addCaption();
                 this.addDesc(); //description
                 this.slideTo();
-                this.buildThumbnail();
                 this.keyPress();
                 if(settings.index) {
                 	
@@ -376,9 +376,6 @@
                         }
                         $slide.eq(index).addClass('loaded');
 
-                        if (settings.auto && settings.videoAutoplay === true) {
-                            clearInterval(interval);
-                        }
                     }
 
                     if(rec===false){
@@ -469,55 +466,6 @@
                         	}
                         }
                     }
-                }
-            },
-           
-            buildThumbnail: function () {
-                if (settings.thumbnail === true && url_array.length > 1) {
-                    var $this = this;
-                    $gallery.append('<div class="thumb_cont"><div class="thumb_info"><span class="close ib"><i class="bUi-iCn-rMv-16" aria-hidden="true"></i></span></div><div class="thumb_inner"></div></div>');
-                    $thumb_cont = $gallery.find('.thumb_cont');
-                    $prev.after('<a class="cLthumb"></a>');
-                    $gallery.find('.cLthumb').bind('click touchend', function () {
-                        $thumb_cont.addClass('open');
-                        if ($this.doCss() && settings.mode === 'slide') {
-                            $slide.eq(index).prevAll().removeClass('nextSlide').addClass('prevSlide');
-                            $slide.eq(index).nextAll().removeClass('prevSlide').addClass('nextSlide');
-                        }
-                    });
-                    $gallery.find('.close').bind('click touchend', function () {
-                        $thumb_cont.removeClass('open');
-                    });
-                    var thumbInfo = $gallery.find('.thumb_info');
-                    var $thumb_inner = $gallery.find('.thumb_inner');
-                    var thumbList = '';
-                    var thumbImg;
-                    if (settings.dynamic == true) {
-                        for (var i = 0; i < settings.dynamicEl.length; i++) {
-                            thumbImg = settings.dynamicEl[i]['thumb'];
-                            thumbList += '<div class="thumb"><img src="' + thumbImg + '" /></div>';
-                        }
-                    } else {
-                        $.each(url_array,function (index, value) {
-                            if (settings.exThumbImage === false || typeof $(this).attr(settings.exThumbImage) == 'undefined' || $(this).attr(settings.exThumbImage) == null) {
-                                thumbImg = url_array[index];
-                            } else {
-                                thumbImg = $(this).attr(settings.exThumbImage);
-                            }
-                            thumbList += '<div class="thumb"><img src="' + thumbImg + '" /></div>';
-                        });
-                    }
-                    $thumb_inner.append(thumbList);
-                    $thumb = $thumb_inner.find('.thumb');
-                    $thumb.bind('click touchend', function () {
-                        usingThumb = true;
-                        var index = $(this).index();
-                        $thumb.removeClass('active');
-                        $(this).addClass('active');
-                        $this.slide(index);
-                        clearInterval(interval);
-                    });
-                    thumbInfo.prepend('<span class="ib count">' + settings.lang.allPhotos + ' (' + $thumb.length + ')</span>');
                 }
             },
             slideTo: function () {
