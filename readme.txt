@@ -1,17 +1,17 @@
 ﻿=== Lightbox Bank ===
 Contributors: contact-banker,Gallery-Bank
-Tags: admin,AJAX, colorbox, gallery, image, images, lightbox, lightview, overlay, photo, photos, picture, video
-Requires at least: 3.0.1
+Tags: admin, AJAX, colorbox, gallery, image, images, lightbox, lightview, overlay, photo, photos, picture, video, wp lightbox, google
+Requires at least: 3.0
 Tested up to: 4.0
 Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Lightbox Bank is the perfect responsive, mobile optimized lightbox plugin for displaying images & videos on WordPress.
+Lightbox Bank is the perfect responsive, mobile optimized image lightbox plugin for displaying images & videos on WordPress.
 
 == Description ==
 
-### Lightbox Bank - Mobile Friendly, Responsive, Retina Ready, Touch Navigation Enabled Lightbox Plugin
+### Lightbox Bank - Mobile Friendly, Responsive, Retina Ready, Touch Navigation Enabled Image Lightbox Plugin
 
 > * <strong>Lightbox Bank is an ultra modern lightbox plugin for viewing photos and videos.</strong>
 > * <strong>Lightbox Bank features touch navigation and is designed keeping in mind the adaptability of Mobiles/Tablets.</strong>
@@ -29,9 +29,6 @@ Videos from two sources, i.e Vimeo and YouTube can be played in the lightbox ban
 *	Works with WordPress Galleries
 *	Works with WordPress Captioned Images
 *	Almost Zero Configuration
-
-
-### If you think, that you found a bug in our [WP Lightbox Bank](http://tech-banker.com) plugin or have any question contact us at [support@tech-banker.com](mailto:support@tech-banker.com).
 
 == Installation ==
 
@@ -56,6 +53,8 @@ After downloading the ZIP file,
 
 If any problem occurs, please contact us at [support@tech-banker.com](mailto:support@tech-banker.com).
 
+== Other Notes ==
+### If you think, that you found a bug in our [WP Lightbox Bank](http://tech-banker.com) plugin or have any question contact us at [support@tech-banker.com](mailto:support@tech-banker.com).
 
 == Screenshots ==
 
