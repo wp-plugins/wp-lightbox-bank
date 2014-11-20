@@ -76,6 +76,14 @@ After you install the Lightbox Bank it will work automatically when you click on
 
 == Changelog ==
 
+= 1.1.1 =
+
+* Fixed Bug Related To Title and Description
+* Updated Css Fixes
+* Recommended Section Added
+* Other Services Section Added
+* Optimized Code
+
 = 1.1 =
 
 * Lightbox Bank Database Optimized
