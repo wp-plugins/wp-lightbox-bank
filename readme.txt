@@ -1,6 +1,6 @@
 ﻿=== Lightbox Bank ===
 Contributors: contact-banker,Gallery-Bank
-Tags: admin, AJAX, colorbox, gallery, image, images, lightbox, lightview, overlay, photo, photos, picture, video, wp lightbox, google
+Tags: admin, AJAX, colorbox, gallery, image, images, lightbox, lightview, overlay, photo, photos, picture, video, wp lightbox, google, wp lightbox
 Requires at least: 3.0
 Tested up to: 4.0
 Stable tag: 1.1.1
@@ -22,13 +22,13 @@ Lightbox Bank is the perfect responsive, mobile optimized image lightbox plugin 
 Videos from two sources, i.e Vimeo and YouTube can be played in the lightbox bank.
 
 
-#### Lightbox Bank Features
+= Lightbox Bank Features =
 
-*	Hassle Free
-*	Responsive Design
-*	Works with WordPress Galleries
-*	Works with WordPress Captioned Images
-*	Almost Zero Configuration
+* Hassle Free
+* Responsive Design
+* Works with WordPress Galleries
+* Works with WordPress Captioned Images
+* Almost Zero Configuration
 
 == Installation ==
 
