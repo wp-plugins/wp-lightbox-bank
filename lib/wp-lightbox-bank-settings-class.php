@@ -18,12 +18,14 @@ if (!current_user_can($user_role_permission))
 }
 else
 { 
-	class update_data_setings
-	{
-		function update_data($tbl,$data,$where)
+	if (!class_exists("update_data_setings")) {
+		class update_data_setings
 		{
-			global $wpdb;
-			$wpdb->update($tbl,$data,$where);
+			function update_data($tbl,$data,$where)
+			{
+				global $wpdb;
+				$wpdb->update($tbl,$data,$where);
+			}
 		}
 	}
 	if(isset($_REQUEST["param"]))

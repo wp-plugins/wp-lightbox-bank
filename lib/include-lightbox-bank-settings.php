@@ -1,10 +1,12 @@
 <?php
-class save_data_settings
-{
-	function insert_data($tbl, $data)
+if (!class_exists("save_data_settings")) {
+	class save_data_settings
 	{
-		global $wpdb;
-		$wpdb->insert($tbl,$data);
+		function insert_data($tbl, $data)
+		{
+			global $wpdb;
+			$wpdb->insert($tbl,$data);
+		}
 	}
 }
 

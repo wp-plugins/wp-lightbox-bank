@@ -1,5 +1,16 @@
 /***************************** Custom Css for System Status *******************************************/
-
+.framework_plugin_message
+{
+	font-weight: 400;
+	background: #d54d21;
+	padding: 1em;
+	margin: 10px 0;
+}
+.framework_plugin_message > p
+{
+	color: #fff;
+	margin: 0px !important;
+}
 .layout-system-report {
     display: none;
     margin: 10px 0;

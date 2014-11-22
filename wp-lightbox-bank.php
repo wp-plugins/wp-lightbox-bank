@@ -4,7 +4,7 @@ Plugin Name: Wp Lightbox Bank Standard Edition
 Plugin URI: http://tech-banker.com
 Description: WP Lightbox Bank is the perfect responsive image lightbox for WordPress galleries.
 Author: Tech Banker
-Version: 1.1.1
+Version: 1.1.2
 Author URI: http://tech-banker.com
 */
 
@@ -16,6 +16,7 @@ if (!class_exists('Wp_Lightbox_Bank')) {
 }
 
 /////////////////////////////////////  Define  WP Instagam Bank  Constants  ////////////////////////////////////////
+if (!defined("WP_LIGHTBOX_BANK_FILE")) define("WP_LIGHTBOX_BANK_FILE","wp-lightbox-bank/wp-lightbox-bank.php");
 if (!defined("WP_LIGHTBOX_BANK_BK_PLUGIN_DIR")) define("WP_LIGHTBOX_BANK_BK_PLUGIN_DIR",  plugin_dir_path( __FILE__ ));
 if (!defined("WP_LIGHTBOX_BANK_BK_PLUGIN_DIRNAME")) define("WP_LIGHTBOX_BANK_BK_PLUGIN_DIRNAME", plugin_basename(dirname(__FILE__)));
 if (!defined("wp_lightbox_bank")) define("wp_lightbox_bank", "wp-lightbox-bank");
@@ -34,7 +35,7 @@ if(!function_exists("lightbox_admin_panel_css_calls"))
 {
 	function lightbox_admin_panel_css_calls()
 	{
-		wp_enqueue_style("framework.css", plugins_url("/assets/css/framework.css" , __FILE__));
+		wp_enqueue_style("lightbox-bank-framework.css", plugins_url("/assets/css/framework.css" , __FILE__));
 		wp_enqueue_style("system-message.css", plugins_url("/assets/css/system-message.css" , __FILE__));
 		wp_enqueue_style("lightbox-custom.css", plugins_url("/assets/css/lightbox-custom.css" , __FILE__));
 	}
@@ -71,7 +72,27 @@ if(!function_exists("lightbox_plugin_install_script"))
 {
 	function lightbox_plugin_install_script()
 	{
-		include_once WP_LIGHTBOX_BANK_BK_PLUGIN_DIR . "lib/wp-lightbox-bank-install.php";
+		global $wpdb;
+		if (is_multisite())
+		{
+			$blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+			foreach($blog_ids as $blog_id)
+			{
+				switch_to_blog($blog_id);
+				if(file_exists(WP_LIGHTBOX_BANK_BK_PLUGIN_DIR. "lib/wp-lightbox-bank-install.php"))
+				{
+					include WP_LIGHTBOX_BANK_BK_PLUGIN_DIR . "lib/wp-lightbox-bank-install.php";
+				}
+				restore_current_blog();
+			}
+		}
+		else
+		{
+			if(file_exists(WP_LIGHTBOX_BANK_BK_PLUGIN_DIR. "lib/wp-lightbox-bank-install.php"))
+			{
+				include_once WP_LIGHTBOX_BANK_BK_PLUGIN_DIR . "lib/wp-lightbox-bank-install.php";
+			}
+		}
 	}
 }
 ////////////////////////////////////  Call Uninstall Script on Plugin Uninstall  ////////////////////////////////////////
@@ -97,9 +118,16 @@ if(isset($_REQUEST["action"]))
 			function lightbox_settings_library()
 			{
 				global $wpdb,$current_user,$user_role_permission;
-				$wp_role = $wpdb->prefix . "capabilities";
-				$current_user->role = array_keys($current_user->$wp_role);
-				$wp_role = $current_user->role[0];
+				if(is_super_admin())
+				{
+					$wp_role = "administrator";
+				}
+				else
+				{
+					$wp_role = $wpdb->prefix . "capabilities";
+					$current_user->role = array_keys($current_user->$wp_role);
+					$wp_role = $current_user->role[0];
+				}
 				include_once WP_LIGHTBOX_BANK_BK_PLUGIN_DIR . "lib/wp-lightbox-bank-settings-class.php";
 			}
 		}
@@ -130,9 +158,16 @@ if(!function_exists("add_lightbox_bank_icon"))
 	function add_lightbox_bank_icon($meta = TRUE)
 	{
 		global $wp_admin_bar,$wpdb,$current_user;
-		$role = $wpdb->prefix . "capabilities";
-		$current_user->role = array_keys($current_user->$role);
-		$role = $current_user->role[0];
+		if(is_super_admin())
+		{
+			$role = "administrator";
+		}
+		else
+		{
+			$role = $wpdb->prefix . "capabilities";
+			$current_user->role = array_keys($current_user->$role);
+			$role = $current_user->role[0];
+		}
 		if (!is_user_logged_in()) {
 			return;
 		}
@@ -261,7 +296,32 @@ if(!function_exists("add_lightbox_bank_icon"))
 		}
 	}
 }
-
+//--------------------------------------------------------------------------------------------------------------//
+// CODE FOR PLUGIN UPDATE MESSAGE
+//--------------------------------------------------------------------------------------------------------------//
+if(!function_exists("lightbox_bank_plugin_update_message"))
+{
+	function lightbox_bank_plugin_update_message($args)
+	{
+		$response = wp_remote_get( 'https://plugins.svn.wordpress.org/wp-lightbox-bank/trunk/readme.txt' );
+		if ( ! is_wp_error( $response ) && ! empty( $response['body'] ) )
+		{
+			// Output Upgrade Notice
+			$matches        = null;
+			$regexp         = '~==\s*Changelog\s*==\s*=\s*[0-9.]+\s*=(.*)(=\s*' . preg_quote($args['Version']) . '\s*=|$)~Uis';
+			$upgrade_notice = '';
+			if ( preg_match( $regexp, $response['body'], $matches ) ) {
+				$changelog = (array) preg_split('~[\r\n]+~', trim($matches[1]));
+				$upgrade_notice .= '<div class="framework_plugin_message">';
+				foreach ( $changelog as $index => $line ) {
+					$upgrade_notice .= "<p>".$line."</p>";
+				}
+				$upgrade_notice .= '</div> ';
+				echo $upgrade_notice;
+			}
+		}
+	}
+}
 ///////////////////////////////////  Call Hooks   //////////////////////////////////////////////////////////////
 
 add_action("admin_init", "lightbox_admin_panel_css_calls");
@@ -269,8 +329,10 @@ add_action("admin_init", "lightbox_admin_panel_js_calls");
 add_action("wp_head", "lightbox_front_end_panel_css_calls");
 add_action("wp_head", "lightbox_front_end_panel_js_calls");
 add_action("wp_head", "add_frontend_script");
+add_action("in_plugin_update_message-".WP_LIGHTBOX_BANK_FILE,"lightbox_bank_plugin_update_message" );
 register_activation_hook(__FILE__, "lightbox_plugin_install_script");
 register_uninstall_hook(__FILE__, "lightbox_plugin_uninstall_script");
 add_action("admin_menu", "create_global_menus_for_lightbox");
 add_action("admin_bar_menu", "add_lightbox_bank_icon", 100);
+add_action( "network_admin_menu", "create_global_menus_for_lightbox" );
 ?>
