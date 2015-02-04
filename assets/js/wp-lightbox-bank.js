@@ -439,10 +439,22 @@
                             } else {
                                 link = '#'
                             }
-                            $slide.eq(i).append('<div class="info group"><a href="' + link + '" class="title">' + title + '</a></div>');
+                            if(title != "undefined")
+                            {
+                            	if(title != "")
+                            	{
+                            		$slide.eq(i).append('<div class="info group"><a href="' + link + '" class="title">' + title + '</a></div>');
+                            	}
+                            }
                         } else {
                         	if (typeof title != 'undefined' || title != null) {
-                        		$slide.eq(i).append('<div class="info group"><span class="title">' + title + '</span></div>');
+                        		if(title != "undefined")
+                                {
+                                	if(title != "")
+                                	{
+                                		$slide.eq(i).append('<div class="info group"><span class="title">' + title + '</span></div>');
+                                	}
+                                }
                         	}
                         }
                     }
@@ -521,6 +533,7 @@
             nextSlide: function () {
                 var $this = this;
                 index = $slide.index($slide.eq(prevIndex));
+                $this.disableVideo(index);
                 if (index + 1 < url_array.length) {
                     index++;
                     $this.slide(index);
@@ -537,6 +550,7 @@
             prevSlide: function () {
                 var $this = this;
                 index = $slide.index($slide.eq(prevIndex));
+                $this.disableVideo(index);
                 if (index > 0) {
                     index--;
                     $this.slide(index);
@@ -549,6 +563,44 @@
                     }
                 }
                 settings.onSlidePrev.call(this);
+            },
+            disableVideo: function (index)
+            {
+            	var $this = this;
+            	var src;
+            	if (settings.mobileSrc === true && windowWidth <= settings.mobileSrcMaxWidth) {
+                    if (settings.dynamic == true) {
+                        src = settings.dynamicEl[index]['mobileSrc'];
+                    } else {
+                        src = $children.eq(index).attr('data-responsive-src');
+                    }
+                } else {
+                    if (settings.dynamic == true) {
+                        src = settings.dynamicEl[index]['src'];
+                    } else {
+                        src = url_array[index];
+                    }
+                }
+            	
+            	if ($this.isVideo(src))
+            	{
+            		var youtube = src.match(/\/\/(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=|embed\/)?([a-z0-9_\-]+)/i);
+                    var vimeo = src.match(/\/\/(?:www\.)?vimeo.com\/([0-9a-z\-_]+)/i);
+                    var video = '';
+                    var a ='';
+                    var video_src = "";
+                    if (youtube) {
+                        if (settings.videoAutoplay === true && lightGalleryOn === false) {
+                            a = '?rel=0&wmode=opaque';
+                        } else {
+                            a = '?wmode=opaque';
+                        }
+                        video_src = "//www.youtube.com/embed/" + youtube[1] + a;
+                    } else if (vimeo) {
+                    	video_src = "http://player.vimeo.com/video/" + vimeo[1] +"?byline=0&amp;portrait=0&amp;color=" + settings.vimeoColor;
+                    }
+            		$slide.eq(index).find("iframe").attr("src",video_src);
+            	}
             },
             slide: function (index) {
                 this.loadContent(index,false);

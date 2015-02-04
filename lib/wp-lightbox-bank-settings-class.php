@@ -80,6 +80,12 @@ else
 			include_once (WP_LIGHTBOX_BANK_BK_PLUGIN_DIR . "/lib/include-lightbox-bank-settings.php");
 			die();
 		}
+		elseif($_REQUEST["param"] == "lightbox_bank_plugin_updates")
+		{
+			$lightbox_bank_updates = intval($_REQUEST["lightbox_bank_updates"]);
+			update_option("lightbox-bank-automatic-update", $lightbox_bank_updates);
+			die();
+		}
 	}
 }	
  ?>
