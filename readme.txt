@@ -3,7 +3,7 @@ Contributors: contact-banker,Gallery-Bank
 Tags: admin, AJAX, colorbox, gallery, image, images, lightbox, lightview, overlay, photo, photos, picture, video, wp lightbox, google, wp lightbox
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,11 @@ After you install the Lightbox Bank it will work automatically when you click on
 
 
 == Changelog ==
+
+= 1.1.7 =
+
+* Minor Bugs Fixed.
+* Other Services Section Updated.
 
 = 1.1.6 =
 
