@@ -4,7 +4,7 @@ Plugin Name: Wp Lightbox Bank Standard Edition
 Plugin URI: http://tech-banker.com
 Description: WP Lightbox Bank is the perfect responsive image lightbox for WordPress galleries.
 Author: Tech Banker
-Version: 1.1.7
+Version: 1.1.8
 Author URI: http://tech-banker.com
 */
 
@@ -160,159 +160,163 @@ if(!function_exists("add_lightbox_bank_icon"))
 	function add_lightbox_bank_icon($meta = TRUE)
 	{
 		global $wp_admin_bar,$wpdb,$current_user;
-		if(is_super_admin())
-		{
-			$role = "administrator";
-		}
-		else
-		{
-			$role = $wpdb->prefix . "capabilities";
-			$current_user->role = array_keys($current_user->$role);
-			$role = $current_user->role[0];
-		}
 		if (!is_user_logged_in()) {
 			return;
 		}
-		
-		switch ($role) {
-			case "administrator":
-				$wp_admin_bar->add_menu(array(
-					"id" => "wp_lightbox_bank_links",
-					"title" => __("<img src=\"" . plugins_url("/assets/images/icon.png",__FILE__)."\" width=\"25\"
-					 height=\"25\" style=\"vertical-align:text-top; margin-right:5px;\" />WP Lightbox Bank"),
-					"href" => __(site_url() . "/wp-admin/admin.php?page=wp_lightbox_bank"),
-				));
-				
-				$wp_admin_bar->add_menu(array(
-					"parent" => "wp_lightbox_bank_links",
-					"id" => "wp_lightbox_bank_general_settings_links",
-					"href" => site_url() . "/wp-admin/admin.php?page=wp_lightbox_bank",
-					"title" => __("General Settings", wp_lightbox_bank))
-				);
-				
-				$wp_admin_bar->add_menu(array(
-					"parent" => "wp_lightbox_bank_links",
-					"id" => "wp_lightbox_bank_display_settings_links",
-					"href" => site_url() . "/wp-admin/admin.php?page=wplb_display_settings",
-					"title" => __("Display Settings", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-					"parent" => "wp_lightbox_bank_links",
-					"id" => "wp_lightbox_bank_plugin_update_links",
-					"href" => site_url() . "/wp-admin/admin.php?page=wplb_auto_plugin_update",
-					"title" => __("Plugin Update", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_system_status_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_system_status",
-						"title" => __("System Status", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_recommendation_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_recommendation",
-						"title" => __("Recommendations", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_other_services_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_other_services",
-						"title" => __("Our Other Services", wp_lightbox_bank))
-				);
-			break;
-			case "editor":
-				$wp_admin_bar->add_menu(array(
+		else 
+		{
+			if(is_super_admin())
+			{
+				$role = "administrator";
+			}
+			else
+			{
+				$role = $wpdb->prefix . "capabilities";
+				$current_user->role = array_keys($current_user->$role);
+				$role = $current_user->role[0];
+			}
+			
+			switch ($role)
+			{
+				case "administrator":
+					$wp_admin_bar->add_menu(array(
 						"id" => "wp_lightbox_bank_links",
 						"title" => __("<img src=\"" . plugins_url("/assets/images/icon.png",__FILE__)."\" width=\"25\"
-					 height=\"25\" style=\"vertical-align:text-top; margin-right:5px;\" />WP Lightbox Bank"),
+						 height=\"25\" style=\"vertical-align:text-top; margin-right:5px;\" />WP Lightbox Bank"),
 						"href" => __(site_url() . "/wp-admin/admin.php?page=wp_lightbox_bank"),
-				));
+					));
 					
-				$wp_admin_bar->add_menu(array(
+					$wp_admin_bar->add_menu(array(
 						"parent" => "wp_lightbox_bank_links",
 						"id" => "wp_lightbox_bank_general_settings_links",
 						"href" => site_url() . "/wp-admin/admin.php?page=wp_lightbox_bank",
 						"title" => __("General Settings", wp_lightbox_bank))
-				);
+					);
 					
-				$wp_admin_bar->add_menu(array(
+					$wp_admin_bar->add_menu(array(
 						"parent" => "wp_lightbox_bank_links",
 						"id" => "wp_lightbox_bank_display_settings_links",
 						"href" => site_url() . "/wp-admin/admin.php?page=wplb_display_settings",
 						"title" => __("Display Settings", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
+					);
+					$wp_admin_bar->add_menu(array(
 						"parent" => "wp_lightbox_bank_links",
 						"id" => "wp_lightbox_bank_plugin_update_links",
 						"href" => site_url() . "/wp-admin/admin.php?page=wplb_auto_plugin_update",
 						"title" => __("Plugin Update", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_system_status_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_system_status",
-						"title" => __("System Status", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_recommendation_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_recommendation",
-						"title" => __("Recommendations", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_other_services_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_other_services",
-						"title" => __("Our Other Services", wp_lightbox_bank))
-				);
-			break;
-			case "author":
-				$wp_admin_bar->add_menu(array(
-						"id" => "wp_lightbox_bank_links",
-						"title" => __("<img src=\"" . plugins_url("/assets/images/icon.png",__FILE__)."\" width=\"25\"
-					 height=\"25\" style=\"vertical-align:text-top; margin-right:5px;\" />WP Lightbox Bank"),
-						"href" => __(site_url() . "/wp-admin/admin.php?page=wp_lightbox_bank"),
-				));
-					
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_general_settings_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wp_lightbox_bank",
-						"title" => __("General Settings", wp_lightbox_bank))
-				);
-					
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_display_settings_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_display_settings",
-						"title" => __("Display Settings", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_plugin_update_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_auto_plugin_update",
-						"title" => __("Plugin Update", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_system_status_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_system_status",
-						"title" => __("System Status", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_recommendation_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_recommendation",
-						"title" => __("Recommendations", wp_lightbox_bank))
-				);
-				$wp_admin_bar->add_menu(array(
-						"parent" => "wp_lightbox_bank_links",
-						"id" => "wp_lightbox_bank_other_services_links",
-						"href" => site_url() . "/wp-admin/admin.php?page=wplb_other_services",
-						"title" => __("Our Other Services", wp_lightbox_bank))
-				);
-			break;
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_system_status_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_system_status",
+							"title" => __("System Status", wp_lightbox_bank))
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_recommendation_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_recommendation",
+							"title" => __("Recommendations", wp_lightbox_bank))
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_other_services_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_other_services",
+							"title" => __("Our Other Services", wp_lightbox_bank))
+					);
+				break;
+				case "editor":
+					$wp_admin_bar->add_menu(array(
+							"id" => "wp_lightbox_bank_links",
+							"title" => __("<img src=\"" . plugins_url("/assets/images/icon.png",__FILE__)."\" width=\"25\"
+						 height=\"25\" style=\"vertical-align:text-top; margin-right:5px;\" />WP Lightbox Bank"),
+							"href" => __(site_url() . "/wp-admin/admin.php?page=wp_lightbox_bank"),
+					));
+						
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_general_settings_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wp_lightbox_bank",
+							"title" => __("General Settings", wp_lightbox_bank))
+					);
+						
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_display_settings_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_display_settings",
+							"title" => __("Display Settings", wp_lightbox_bank))
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_plugin_update_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_auto_plugin_update",
+							"title" => __("Plugin Update", wp_lightbox_bank))
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_system_status_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_system_status",
+							"title" => __("System Status", wp_lightbox_bank))
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_recommendation_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_recommendation",
+							"title" => __("Recommendations", wp_lightbox_bank))
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_other_services_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_other_services",
+							"title" => __("Our Other Services", wp_lightbox_bank))
+					);
+				break;
+				case "author":
+					$wp_admin_bar->add_menu(array(
+							"id" => "wp_lightbox_bank_links",
+							"title" => __("<img src=\"" . plugins_url("/assets/images/icon.png",__FILE__)."\" width=\"25\"
+						 height=\"25\" style=\"vertical-align:text-top; margin-right:5px;\" />WP Lightbox Bank"),
+							"href" => __(site_url() . "/wp-admin/admin.php?page=wp_lightbox_bank"),
+					));
+						
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_general_settings_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wp_lightbox_bank",
+							"title" => __("General Settings", wp_lightbox_bank))
+					);
+						
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_display_settings_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_display_settings",
+							"title" => __("Display Settings", wp_lightbox_bank))
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_plugin_update_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_auto_plugin_update",
+							"title" => __("Plugin Update", wp_lightbox_bank))
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_system_status_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_system_status",
+							"title" => __("System Status", wp_lightbox_bank))
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_recommendation_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_recommendation",
+							"title" => __("Recommendations", wp_lightbox_bank))
+					);
+					$wp_admin_bar->add_menu(array(
+							"parent" => "wp_lightbox_bank_links",
+							"id" => "wp_lightbox_bank_other_services_links",
+							"href" => site_url() . "/wp-admin/admin.php?page=wplb_other_services",
+							"title" => __("Our Other Services", wp_lightbox_bank))
+					);
+				break;
+			}
 		}
 	}
 }

@@ -1,4 +1,9 @@
 <?php
+global $wpdb,$current_user;
+if (!is_user_logged_in()) {
+	return;
+}
+
 if (!class_exists("save_data_settings")) {
 	class save_data_settings
 	{
