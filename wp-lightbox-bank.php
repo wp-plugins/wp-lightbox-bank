@@ -4,8 +4,9 @@ Plugin Name: Wp Lightbox Bank Standard Edition
 Plugin URI: http://tech-banker.com
 Description: WP Lightbox Bank is the perfect responsive image lightbox for WordPress galleries.
 Author: Tech Banker
-Version: 1.1.9
+Version: 1.1.10
 Author URI: http://tech-banker.com
+License: GPLv2 or later
 */
 
 if (!class_exists("Wp_Lightbox_Bank")) {
