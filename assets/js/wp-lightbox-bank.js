@@ -467,15 +467,21 @@
                         if (settings.dynamic == true) {
                             description = settings.dynamicEl[i]['desc'];
                         } else {
-                        	item = jQuery("a[href='"+url_array[i]+"']");
+                            item = jQuery("a[href='"+url_array[i]+"']");
                             description = item.attr("data-desc");
+                            if(typeof description=='undefined' || description==null) {
+                                var descContainerId = jQuery("IMG",item).attr("aria-describedby");
+                                if(typeof descContainerId!='undefined' && descContainerId!=null) {
+                                    description = jQuery("#"+descContainerId).text();
+                                }
+                            }
                         }
-                        if (settings.caption === false) {
-                            $slide.eq(i).append('<div class="info group"><span class="desc">' + description + '</span></div>');
-                        } else {
-                        	if (typeof description != 'undefined' || description != null) {
-                        		$slide.eq(i).find('.info').append('<span class="desc">' + description + '</span>');
-                        	}
+                        if (typeof description != 'undefined' && description != null) {
+                            if (settings.caption === false) {
+                                $slide.eq(i).append('<div class="info group"><span class="desc">' + description + '</span></div>');
+                            } else {
+                                $slide.eq(i).find('.info').append('<span class="desc">' + description + '</span>');
+                            }
                         }
                     }
                 }
