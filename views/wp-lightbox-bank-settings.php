@@ -123,7 +123,15 @@ else
 								<div class="layout-controls wplb-custom-controls-checkbox custom-layout-controls-lightbox">
 									<input type="checkbox" id="ux_chk_disablelightbox"
 										name="ux_chk_disablelightbox"
-										<?php echo $disable_other_lightbox == "true" ? "checked" : "";?> /><label class="wplb-chk-label"><?php _e("Certain themes and plugins use a hard-coded lightbox, which make it very difficult to override.<br>By enabling the setting, we inject a small amount of javascript onto the page which attempts to get around this issue but note this is not guaranteed, as we cannot account for every lightbox solution out there.", wp_lightbox_bank); ?>  </label>
+										<?php echo $disable_other_lightbox == "true" ? "checked=\"checked\"" : "";?> /><label class="wplb-chk-label"><?php _e("Certain themes and plugins use a hard-coded lightbox, which make it very difficult to override.<br>By enabling the setting, we inject a small amount of javascript onto the page which attempts to get around this issue but note this is not guaranteed, as we cannot account for every lightbox solution out there.", wp_lightbox_bank); ?>  </label>
+								</div>
+							</div>
+							<div class="layout-control-group custom-layout-control-group">
+								<label class="layout-control-label custom-label-width-lightbox"><?php _e("Show Top Bar Menu", wp_lightbox_bank); ?> :<span
+										class="error">*</span></label>
+								<div class="layout-controls wplb-custom-controls-checkbox custom-layout-controls-lightbox">
+									<?php $show_top_bar_menu = get_option("lightbox-bank-top-bar-menu");?>
+									<input type="checkbox" id="ux_chk_top_bar" name="ux_chk_top_bar" onclick="wp_lightbox_top_bar_settings(this);" <?php echo $show_top_bar_menu == 1 ? "checked=\"checked\"" : "";?> value="1" />
 								</div>
 							</div>
 							<div class="layout-control-group custom-layout-control-group">
@@ -195,6 +203,15 @@ function restore_lightbox()
 			}, 2000);
 		});
 	}
+}
+
+function wp_lightbox_top_bar_settings(control)
+{
+	var top_bar_menu = jQuery(control).prop("checked");
+	var show_topbar_menu = (top_bar_menu == true ? 1 : 0);
+	jQuery.post(ajaxurl, "show_topbar_menu="+show_topbar_menu+"&param=lightbox_bank_topbar_settings&action=lightbox_settings_library", function()
+	{
+	});
 }
 </script>
 <?php

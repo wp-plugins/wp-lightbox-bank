@@ -90,6 +90,12 @@ else
 			update_option("lightbox-bank-automatic-update", $lightbox_bank_updates);
 			die();
 		}
+		elseif($_REQUEST["param"] == "lightbox_bank_topbar_settings")
+		{
+			$show_topbar_menu = intval($_REQUEST["show_topbar_menu"]);
+			update_option("lightbox-bank-top-bar-menu", $show_topbar_menu);
+			die();
+		}
 	}
 }	
  ?>

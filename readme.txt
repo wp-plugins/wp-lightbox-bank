@@ -2,8 +2,8 @@
 Contributors: contact-banker,Gallery-Bank
 Tags: admin, AJAX, colorbox, gallery, image, images, lightbox, lightview, overlay, photo, photos, picture, video, wp lightbox, google, wp lightbox
 Requires at least: 3.0
-Tested up to: 4.1.2
-Stable tag: 1.1.11
+Tested up to: 4.2
+Stable tag: 1.1.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,11 @@ After you install the Lightbox Bank it will work automatically when you click on
 
 
 == Changelog ==
+
+= 1.1.12 =
+
+* Added Compatibility with 4.2 WordPress.
+* Added Top Bar hide show option.
 
 = 1.1.11 =
 
