@@ -1,7 +1,7 @@
 <script>
 jQuery(document).ready(function()
 {
-	jQuery(".nav-tab-wrapper > a#<?php echo $_REQUEST["page"];?>").addClass("nav-tab-active");
+	jQuery(".nav-tab-wrapper > a#<?php echo esc_attr($_REQUEST["page"]);?>").addClass("nav-tab-active");
 });
 </script>
 <h2 class="nav-tab-wrapper" style="max-width: 1000px;">
