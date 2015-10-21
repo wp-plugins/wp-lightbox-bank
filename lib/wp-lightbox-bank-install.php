@@ -12,7 +12,7 @@ if(!function_exists("create_table_lightbox_settings"))
 			setting_key VARCHAR(100) NOT NULL,
 			setting_value TEXT NOT NULL,
 			PRIMARY KEY (setting_id)
-			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci";
+			) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci";
 		dbDelta($sql);
 
 		include (WP_LIGHTBOX_BANK_BK_PLUGIN_DIR . "/lib/include-lightbox-bank-settings.php");
